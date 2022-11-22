@@ -3,7 +3,7 @@ import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-ethers";
 import "@openzeppelin/hardhat-upgrades";
 
-const DEFAULT_MNEMNOIC = "";
+const DEFAULT_MNEMNOIC = "gesture inject test cycle original hollow east ridge hen combine junk child bacon zero hope comfort vacuum milk pitch cage oppose unhappy lunar seat";
 
 
 const mnemonic_24 = process.env['MNEMONIC'] || DEFAULT_MNEMNOIC;
@@ -26,7 +26,7 @@ const config: HardhatUserConfig = {
     hardhat: {
 
     },
-    ethermint: {
+    localhost: {
       url: "http://localhost:8545/",
       accounts: {
         mnemonic: mnemonic_24

@@ -8,14 +8,17 @@ describe("Upgradable", function () {
   });
 
   it("Should return contracts name", async function () {
-    this.mars = await upgrades.deployProxy(this.Mars, { kind: "uups" });
+    this.mars = await upgrades.deployProxy(this.Mars);
+    await this.mars.deployed()
+    console.log("Proxy contract deployed address:", this.mars.address)
     expect(await this.mars.name()).to.equal("Mars");
   });
 
   it("Should upgrade contract and return new version", async function () {
     const marsV2 = await upgrades.upgradeProxy(this.mars, this.MarsV2);
+    await marsV2.deployed()
     console.info("upgraded transaction hash: ", marsV2.deployTransaction.hash)
-    console.info("on block ", marsV2.deployTransaction.blockNumber)
-    expect(await marsV2.version()).to.equal("v2");
+    const marsVersion = await marsV2.version()
+    expect(marsVersion).to.equal("v2");
   });
 });
